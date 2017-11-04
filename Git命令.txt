@@ -1,0 +1,106 @@
+一、初始化GIT仓库
+1. 在自己的 Windows 下面选一盘符用来创建 Git 本地仓库
+
+    1> 本地创建：可以在任意盘符中创建一个目录文件夹
+
+    2> 命令创建：执行下面两句命令后就会自动在电脑 E 盘创建一个 "myGitHub" 的目录文件夹
+
+         $ cd /e
+
+         $ mkdir myGitHub
+
+2. 选中创建的仓库目录右击鼠标，在弹出的菜单中选择 "Git Bash Here" 选项后就会在此目录中打开我们的 Git 命令控制台，进入到了本地仓库的根目录下。
+
+3. 初始化 Git 仓库，操作完成后会在此目录中生成一个隐藏的 .git 后缀文件
+
+    $ git init
+
+    备注：初始化必须进入到本地仓库的根目录下面。
+    
+4. 添加远程仓库管理
+
+    $ git remote add origin git@github.com:userName/hello-word.git
+    
+    备注：其中 "git@github.com:userName/hello-word.git" 是我们 GitHub 中 "hello-word" 项目的 ssh 地址，"userName" 是我们在 GitHub 网站上注册时使用的用户名，"hello-word.git" 是我们为这个项目建立的仓库名
+
+5. 如果在 GitHub 上创建仓库的时候将 "README" 选项选择了则就已经算是一次提交了，若需要在本地同步远程仓库的内容则使用如下命令即可
+
+    $ git pull git@github.com:userName/hello-word.git
+
+    或者
+
+    $ git pull origin master
+
+    备注："userName" 是我们 GitHub 账号的用户名，"hello-word.git" 是我们为这个项目建立的仓库名，执行如上命令成功后在将会在本地仓库的根目录下生成从远程仓库同步下来的 "README.md" 文件。
+
+添加当前更改或新增文件到本地 Git 仓库中
+
+二、管理GIT仓库（文件的提交）
+
+1. 添加指定文件
+
+    $ git add hello-word.txt
+
+    备注：添加当前目录中的 "hello-word.txt" 文件到本地 Git 仓库中。
+
+2. 或者添加全部文件
+
+    git add . 或者 git add -A
+
+    备注："add" 后面加点意思就是将本仓库中的所有内容添加到本地仓库中。
+
+3. 提交当前工作空间的修改内容
+
+    $ git commit -m "XXX"
+
+    备注："XXX" 是提示信息，此提示信息是一定要写的，不仅是规则同时也方便我们记录此次操作的是什么内容。
+    
+4. 推送本地仓库内容到远程仓库
+
+    $ git push git@github.com:userName/hello-word.git 
+
+    或者 
+
+    $ git push -u origin master
+
+    备注："userName" 是我们 GitHub 账号的用户名，"hello-word.git" 是我们为这个项目建立的仓库名。
+
+5. 如果出现 "non-fast-forward" 错误，主要是因为 GitHub 仓库中已经存在有一部分内容了，所以它不允许你直接把你的内容覆盖上去，比如有的人在新建仓库配置信息时将 "README" 文件选项打钩了可能就会出现这种情况，此时可以使用如下方法解决
+
+    $ git push --all -f
+
+    备注：强推即利用覆盖方式将你本地的代码替代 GitHub 仓库内的内容
+
+6. 至此上传文件就结束了，你可以到你的 GitHub 项目主页（https://github.com/userName/hello-word.git） 看到从本地仓库上传到 GitHub 远程仓库的文件了。
+
+三、Git常见功能管理
+1. 增加、修改或删除了新文件
+
+    $ git add .
+
+    $ git commit -m "XXX"
+
+    $ git push origin master
+
+    或者
+
+    $ git push -u origin master
+
+2. 从远程仓库克隆内容至本地仓库
+
+    $ git clone git@github.com:userName/hello-word.git
+
+    备注："userName" 是我们 GitHub 账号的用户名，"hello-word.git" 是我们为这个项目建立的仓库名。
+
+3. 假如本地仓库已经存在了代码而远程仓库里有更新，需要将更改的内容合并到本地的代码中
+
+    $ git fetch origin    
+
+    备注：获取远程更新。
+
+    $ git merge origin/master 
+
+    备注：将更新的内容合并到本地分支。
+
+
+
